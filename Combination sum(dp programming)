@@ -1,0 +1,30 @@
+# Java-codes
+class Solution {
+    private void findCombination(int idx,int[] ar,int target,List<List<Integer>>list,List<Integer> dp)
+    {
+        if(idx==ar.length)
+        {
+            if(target==0)
+            {
+                list.add(new ArrayList<>(dp));
+            }
+            return;
+        }
+        
+        if(ar[idx]<=target)
+        {
+          dp.add(ar[idx]);
+          findCombination(idx,ar,target-ar[idx],list,dp);
+          dp.remove(dp.size()-1);
+        }
+        findCombination(idx+1,ar,target,list,dp);
+        
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) 
+    {
+        List<List<Integer>> list=new ArrayList<>();
+        findCombination(0,candidates,target,list,new ArrayList<>());
+        return list;
+
+    }
+}
