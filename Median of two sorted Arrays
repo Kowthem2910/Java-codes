@@ -1,0 +1,21 @@
+# Java-codes
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int n=nums1.length;
+        int m=nums2.length;
+        int ar[]=new int[n+m];
+        System.arraycopy(nums1,0,ar,0,n);
+        System.arraycopy(nums2,0,ar,n,m);
+        Arrays.sort(ar);
+        if(ar.length%2==0)
+        {
+          return (float)((ar[ar.length/2])+(ar[(ar.length/2)-1]))/2;
+        }
+        if(ar.length%2==1)
+        {
+           return (float)(ar[ar.length/2]);
+        }
+       return 0; 
+        
+    }
+}
