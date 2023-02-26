@@ -1,0 +1,72 @@
+# Java-codes
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) 
+    {
+       List<Integer> li1=new ArrayList<Integer>();
+       List<Integer> li2=new ArrayList<Integer>();
+       List<Integer> l=new ArrayList<Integer>();
+       while(l1!=null)
+       {
+           li1.add(0,l1.val);
+           l1=l1.next;
+       }
+        while(l2!=null)
+       {
+           li2.add(0,l2.val);
+           l2=l2.next;
+       }
+      if(li1.size()!=li2.size())
+       {
+           if(li1.size()>li2.size())
+           {
+               int a=li1.size();
+               int b=li2.size();
+               for(int i=0;i<a-b;i++)
+               {
+                   int o=0;
+                   li2.add(0,o);
+               }
+           }
+           else
+           {
+               int a=li1.size();
+               int b=li2.size();
+               for(int i=0;i<b-a;i++)
+               {
+                   int o=0;
+                   li1.add(0,o);
+               }
+           }
+       }
+       int c=0;
+       for(int i=li1.size()-1;i>=0;i--)
+       {
+           int k=li1.get(i)+li2.get(i);
+           l.add(0,(k+c)%10);
+           c=(k+c)/10;
+       }
+       if(c>0)
+       {
+           l.add(0,c);
+       }
+       ListNode head2=new ListNode(-1);
+        ListNode temp=head2;;
+        for(int i=l.size()-1;i>=0;i--)
+        {
+            ListNode h=new ListNode(l.get(i));
+            temp.next=h;
+            temp=h;
+        }
+        return head2.next;
+    }
+}
